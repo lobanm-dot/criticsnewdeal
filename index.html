@@ -1,0 +1,819 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>New Deal Critics Editorials</title>
+  <style>
+    :root {
+      --paper: #f6f1e7;
+      --ink: #1f1a14;
+      --muted: #65584c;
+      --line: #cdbfae;
+      --accent: #7a1f1f;
+      --accent2: #17466b;
+      --good: #1f6b3b;
+      --card: #fffaf2;
+      --shadow: 0 10px 30px rgba(0,0,0,.12);
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Georgia, "Times New Roman", serif;
+      color: var(--ink);
+      background: linear-gradient(180deg, #ebe2d2, #d8ccb8);
+      min-height: 100vh;
+    }
+
+    .app {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    .masthead {
+      background: var(--paper);
+      border: 3px double var(--ink);
+      box-shadow: var(--shadow);
+      padding: 16px 20px;
+      margin-bottom: 18px;
+    }
+
+    .paper-title {
+      text-align: center;
+      font-size: 2.1rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin: 0;
+    }
+
+    .subhead {
+      text-align: center;
+      font-size: .98rem;
+      color: var(--muted);
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      padding: 8px 0;
+      margin-top: 10px;
+    }
+
+    .layout {
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      gap: 18px;
+    }
+
+    .sidebar, .main {
+      background: var(--paper);
+      border: 2px solid var(--ink);
+      box-shadow: var(--shadow);
+    }
+
+    .sidebar {
+      padding: 14px;
+      position: sticky;
+      top: 16px;
+      align-self: start;
+      max-height: calc(100vh - 32px);
+      overflow: auto;
+    }
+
+    .sidebar h2 {
+      font-size: 1.05rem;
+      margin: 0 0 10px;
+      text-transform: uppercase;
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 8px;
+    }
+
+    .nav-btn {
+      width: 100%;
+      text-align: left;
+      padding: 10px 12px;
+      margin: 0 0 8px;
+      background: var(--card);
+      border: 1px solid var(--line);
+      font-family: inherit;
+      cursor: pointer;
+      transition: .2s ease;
+      border-radius: 8px;
+    }
+
+    .nav-btn:hover, .nav-btn.active {
+      background: #f0e4d4;
+      border-color: var(--ink);
+      transform: translateX(2px);
+    }
+
+    .progress-box {
+      margin-top: 14px;
+      padding-top: 12px;
+      border-top: 1px solid var(--line);
+      font-size: .94rem;
+    }
+
+    .progress-track {
+      width: 100%;
+      height: 10px;
+      background: #ddd1bf;
+      border-radius: 999px;
+      overflow: hidden;
+      margin: 8px 0;
+    }
+
+    .progress-fill {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, var(--accent2), var(--accent));
+      transition: width .25s ease;
+    }
+
+    .main {
+      padding: 0;
+      overflow: hidden;
+    }
+
+    .page {
+      display: none;
+      padding: 24px;
+    }
+
+    .page.active { display: block; }
+
+    .editorial-header {
+      display: grid;
+      grid-template-columns: 220px 1fr;
+      gap: 18px;
+      border-bottom: 2px solid var(--ink);
+      padding-bottom: 16px;
+      margin-bottom: 16px;
+    }
+
+    .image-box {
+      background: var(--card);
+      border: 2px solid var(--ink);
+      min-height: 250px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 4px;
+    }
+
+    .image-box img {
+      width: 100%;
+      height: 100%;
+      max-height: 250px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .editorial-kicker {
+      text-transform: uppercase;
+      font-size: .8rem;
+      letter-spacing: 1.4px;
+      color: var(--accent);
+      margin-bottom: 8px;
+      font-weight: 700;
+    }
+
+    .editorial-title {
+      font-size: 2rem;
+      margin: 0 0 8px;
+      line-height: 1.1;
+    }
+
+    .editorial-meta {
+      font-size: .95rem;
+      color: var(--muted);
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      padding: 8px 0;
+      margin-bottom: 12px;
+    }
+
+    .quote-box {
+      background: var(--card);
+      border-left: 5px solid var(--accent);
+      padding: 16px;
+      font-size: 1.07rem;
+      line-height: 1.7;
+      margin-bottom: 18px;
+      font-style: italic;
+    }
+
+    .section-title {
+      text-transform: uppercase;
+      font-size: .94rem;
+      letter-spacing: 1px;
+      margin: 20px 0 8px;
+      color: var(--accent2);
+      font-weight: 700;
+    }
+
+    .plot-box, .choices-box {
+      background: var(--card);
+      border: 1px solid var(--line);
+      padding: 14px;
+      border-radius: 10px;
+      margin-bottom: 16px;
+    }
+
+    .scale-labels {
+      display: flex;
+      justify-content: space-between;
+      font-size: .92rem;
+      color: var(--muted);
+      margin-bottom: 8px;
+      gap: 10px;
+    }
+
+    .slider-row {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 12px;
+      align-items: center;
+    }
+
+    input[type="range"] {
+      width: 100%;
+      accent-color: var(--accent);
+      cursor: pointer;
+    }
+
+    .slider-value {
+      min-width: 140px;
+      text-align: center;
+      font-weight: 700;
+      background: #efe3d3;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 8px 10px;
+      font-size: .92rem;
+    }
+
+    .choice {
+      display: block;
+      border: 1px solid var(--line);
+      padding: 12px;
+      margin-bottom: 10px;
+      border-radius: 10px;
+      cursor: pointer;
+      background: #fffdf8;
+      transition: .2s ease;
+    }
+
+    .choice:hover { background: #f6eddf; }
+    .choice.correct {
+      border-color: var(--good);
+      background: #e9f6ee;
+    }
+    .choice.incorrect {
+      border-color: #8f2323;
+      background: #faeaea;
+    }
+
+    .feedback {
+      min-height: 24px;
+      font-weight: 700;
+      margin-top: 8px;
+    }
+
+    .controls {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      margin-top: 18px;
+      border-top: 1px solid var(--line);
+      padding-top: 14px;
+    }
+
+    .btn {
+      border: 1px solid var(--ink);
+      background: var(--ink);
+      color: #fff;
+      padding: 10px 14px;
+      font-family: inherit;
+      cursor: pointer;
+      border-radius: 8px;
+      transition: .2s ease;
+      font-weight: bold;
+    }
+
+    .btn.secondary {
+      background: var(--card);
+      color: var(--ink);
+    }
+
+    .btn:hover:not(:disabled) { 
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+    
+    .btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    .results-wrap {
+      display: none;
+      padding: 24px;
+    }
+
+    .results-wrap.active { display: block; }
+
+    .results-title {
+      font-size: 2rem;
+      margin: 0 0 12px;
+      text-transform: uppercase;
+    }
+
+    .spectrum {
+      margin: 20px 0;
+      background: linear-gradient(90deg, #215d32 0%, #d9d4c6 50%, #7b2020 100%);
+      height: 24px;
+      border-radius: 999px;
+      position: relative;
+      border: 2px solid var(--ink);
+    }
+
+    .spectrum-labels {
+      display: flex;
+      justify-content: space-between;
+      font-size: .93rem;
+      margin-bottom: 6px;
+      font-weight: 700;
+    }
+
+    .marker {
+      position: absolute;
+      top: -14px;
+      transform: translateX(-50%);
+      background: var(--paper);
+      border: 1px solid var(--ink);
+      padding: 4px 7px;
+      border-radius: 999px;
+      font-size: .8rem;
+      white-space: nowrap;
+      z-index: 10;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    }
+
+    .results-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 14px;
+      margin-top: 20px;
+    }
+
+    .result-card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 14px;
+      transition: transform 0.2s ease;
+    }
+    
+    .result-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    }
+
+    .result-card h3 {
+      margin: 0 0 6px;
+      font-size: 1.08rem;
+    }
+
+    .tag {
+      display: inline-block;
+      padding: 4px 8px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      font-size: .8rem;
+      margin-bottom: 8px;
+      background: #efe3d3;
+      font-weight: bold;
+    }
+
+    .teacher-note {
+      background: #eef4fb;
+      border: 1px solid #b5c9de;
+      padding: 14px;
+      border-radius: 10px;
+      margin-top: 24px;
+      font-size: 0.95rem;
+    }
+
+    @media (max-width: 920px) {
+      .layout { grid-template-columns: 1fr; }
+      .sidebar { position: static; max-height: none; }
+      .editorial-header { grid-template-columns: 1fr; }
+      .slider-row { grid-template-columns: 1fr; }
+      .slider-value { width: 100%; }
+    }
+  </style>
+</head>
+<body>
+  <div class="app">
+    <div class="masthead">
+      <h1 class="paper-title">The National Editorial Review</h1>
+      <div class="subhead">A student investigation into New Deal criticism • Plot each voice on the scale from <strong>Did Too Little</strong> to <strong>Did Too Much</strong></div>
+    </div>
+
+    <div class="layout">
+      <aside class="sidebar">
+        <h2>Editorial Pages</h2>
+        <div id="nav"></div>
+        <div class="progress-box">
+          <div><strong>Completed pages:</strong> <span id="progressText">0 / 10</span></div>
+          <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+          <button class="btn" style="width:100%;margin-top:8px;" onclick="showResults()">View Final Results</button>
+        </div>
+      </aside>
+
+      <main class="main">
+        <div id="pages"></div>
+        
+        <div class="results-wrap" id="resultsWrap">
+          <h2 class="results-title">Classified Positions on the New Deal</h2>
+          <p>Use this results page to review how each critic viewed Roosevelt's New Deal. Critics on the left believed the New Deal <strong>did too little</strong>. Critics on the right believed it <strong>did too much</strong>.</p>
+
+          <div class="spectrum-labels">
+            <span>Did Too Little</span>
+            <span>Balanced / Mixed</span>
+            <span>Did Too Much</span>
+          </div>
+          <div class="spectrum" id="spectrum"></div>
+
+          <div class="results-grid" id="resultsGrid"></div>
+
+          <div class="teacher-note">
+            <strong>Teacher Note for GitHub:</strong><br/>
+            To make portraits appear on your live site, create a folder named <strong>images</strong> in your GitHub repository. Save your images as <em>critic-1.png</em>, <em>critic-2.png</em>, <em>critic-3.png</em>, etc., matching the critic's ID number.
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <script>
+    const critics = [
+      {
+        id: 1,
+        name: 'Huey Long',
+        role: 'Louisiana Senator',
+        title: 'The New Deal Protects the Rich Too Well',
+        kicker: 'Editorial Against Half-Measures',
+        position: 18,
+        quote: `The people of this country are tired of being told to wait while wealth stays piled up in the hands of a small group at the top. President Roosevelt talks about recovery, but too many families still have empty pockets, weak wages, and no real security. I do not say the New Deal has done nothing. I say it has done far too little to break the power of great fortunes and spread opportunity fairly. A government that can rescue banks and build agencies can also make sure no American lives in misery while others sit on millions.`,
+        summaries: [
+          'The New Deal went too far and gave Washington too much power.',
+          'The New Deal helped some people, but it did not go far enough to spread wealth and protect the poor.',
+          'The New Deal should focus less on poor people and more on business leaders.'
+        ],
+        correct: 1
+      },
+      {
+        id: 2,
+        name: 'Father Charles Coughlin',
+        role: 'Radio Priest',
+        title: 'Wall Street Still Wins While Workers Wait',
+        kicker: 'Editorial from the Airwaves',
+        position: 24,
+        quote: `The New Deal was supposed to strike at the roots of economic suffering, yet too often it has propped up the same financial order that failed the country in the first place. Ordinary people hear promises, but they still watch big banks, moneyed interests, and powerful institutions receive the greatest protection. If the federal government is going to step in, then it should step in for the common man in a stronger, clearer, and more direct way. Relief without deeper economic justice is not enough. The nation needs reform that reaches the heart of the money system, not just a softer landing for those already close to power.`,
+        summaries: [
+          'The New Deal should do less and leave the economy alone.',
+          'The New Deal spends too much on farmers and workers.',
+          'The New Deal has not done enough to challenge powerful financial interests and fully help ordinary people.'
+        ],
+        correct: 2
+      },
+      {
+        id: 3,
+        name: 'Dr. Francis Townsend',
+        role: 'Old-Age Pension Advocate',
+        title: 'The Elderly Cannot Live on Promises Alone',
+        kicker: 'Editorial for Faster Relief',
+        position: 30,
+        quote: `I see older Americans who worked all their lives now standing in line, depending on relatives, charities, or luck. That is not a decent answer in a modern nation. The Roosevelt administration has recognized suffering, but recognition is not the same thing as full action. The country needs a broad pension plan that gives older citizens regular support and also puts money back into the economy through spending. If the New Deal claims to care for the people, then it must move more boldly for those who are too old to wait for slow recovery.`,
+        summaries: [
+          'The New Deal is moving too slowly and should do more for older Americans.',
+          'The New Deal should stop helping the elderly and focus only on banks.',
+          'The New Deal gives too much money to retired people already.'
+        ],
+        correct: 0
+      },
+      {
+        id: 4,
+        name: 'Herbert Hoover',
+        role: 'Former President',
+        title: 'A Dangerous Turn Away from Self-Reliance',
+        kicker: 'Editorial Warning Against Dependency',
+        position: 83,
+        quote: `What is presented as compassion today may become dependency tomorrow. The New Deal has changed the relationship between the citizen and the federal government in ways that should trouble every American who values independence. Instead of encouraging local responsibility, voluntary action, and individual effort, Washington now acts as if it must supervise every hardship and manage every difficulty. That path does not strengthen character; it weakens it. A government that grows large enough to direct daily economic life may someday become too large to be checked.`,
+        summaries: [
+          'The New Deal changed government too much and made Americans more dependent on federal help.',
+          'The New Deal should give even more money and power to Washington.',
+          'The New Deal does not care enough about old-age pensions.'
+        ],
+        correct: 0
+      },
+      {
+        id: 5,
+        name: 'Justice Owen Roberts',
+        role: 'Supreme Court Justice',
+        title: 'The Constitution Has Limits, Even in Crisis',
+        kicker: 'Editorial from the Constitutional Bench',
+        position: 76,
+        quote: `No emergency, however severe, erases the structure of the Constitution. In recent New Deal legislation, the federal government has claimed powers over business, labor, and commerce that stretch far beyond what was originally intended. It is tempting in desperate times to excuse broad action simply because it is energetic. But law is not measured only by good intentions. If the government can ignore limits whenever a crisis appears, then constitutional protections become weak exactly when they are needed most.`,
+        summaries: [
+          'The New Deal should be stronger because emergencies require unlimited power.',
+          'The New Deal went too far by stretching constitutional limits on federal power.',
+          'The New Deal did too little to control the courts.'
+        ],
+        correct: 1
+      },
+      {
+        id: 6,
+        name: 'Bryan Conkling',
+        role: 'Owner of TPS Reports Inc.',
+        title: 'Too Many Rules, Too Little Freedom to Build',
+        kicker: 'Editorial from a Business Owner',
+        position: 71,
+        quote: `I run a company, not a branch office of Washington. Yet with each new program, code, and regulation, it feels as if the federal government expects to tell private business how to hire, pay, produce, and compete. Stability matters, yes, but businesses also need room to plan, take risks, and grow. When government keeps adding rules in the name of rescue, it can choke off the very energy needed for real recovery. The New Deal may have been designed to help, but too often it treats enterprise like a problem to be managed instead of a strength to be trusted.`,
+        summaries: [
+          'The New Deal has added too many regulations and made it harder for businesses to operate freely.',
+          'The New Deal should regulate business much more aggressively.',
+          'The New Deal did too little for retired Americans.'
+        ],
+        correct: 0
+      },
+      {
+        id: 7,
+        name: 'Mildred Haines',
+        role: 'Taxpayer Concerned About Spending',
+        title: 'Who Pays for All of This in the End?',
+        kicker: 'Editorial from the Kitchen Table',
+        position: 67,
+        quote: `Every week I hear about another federal program, another agency, another promise, and another expense. I understand that people are hurting, but I also know that government money does not appear by magic. It must be borrowed, taxed, or taken from somewhere. If Washington keeps spending at this pace, the bill will eventually come due, and regular families may be the ones left to carry it. A nation can help its people without acting as though endless spending has no future cost.`,
+        summaries: [
+          'The New Deal spends too much and may leave future taxpayers with the burden.',
+          'The New Deal should create many more expensive programs.',
+          'The New Deal does too little to fight the rich.'
+        ],
+        correct: 0
+      },
+      {
+        id: 8,
+        name: 'Samuel Price',
+        role: 'Unemployed Worker',
+        title: 'Relief Came, But Not Enough of It Reached Us',
+        kicker: 'Editorial from the Breadline',
+        position: 35,
+        quote: `I have heard the speeches, watched the parades of new programs, and read the papers that say help is on the way. But in my neighborhood, too many men still wake up without work and go to sleep worried about rent and food. I do not deny that the government has tried to help. I deny that it has helped enough of us, fast enough. If the New Deal is meant to save ordinary families, then ordinary families should not still feel this forgotten.`,
+        summaries: [
+          'The New Deal did too much and created too many jobs.',
+          'The New Deal helped some people, but it did not reach enough unemployed workers.',
+          'The New Deal should focus only on the stock market.'
+        ],
+        correct: 1
+      },
+      {
+        id: 9,
+        name: 'Walter Briggs',
+        role: 'Skeptical Citizen',
+        title: 'Busy Work Is Not Real Recovery',
+        kicker: 'Editorial from Main Street',
+        position: 62,
+        quote: `A man can swing a shovel all day and still wonder whether the job means anything. I look at some of these federal projects and ask whether they are solving lasting problems or just creating the appearance of action. If the government pays people to dig, fill, move, and repeat without a clear purpose, that is not a healthy economy. Real recovery should come from productive work that builds value, not from temporary jobs meant mainly to prove that Washington is doing something.`,
+        summaries: [
+          'The New Deal should create more temporary projects even if they do not matter.',
+          'The New Deal created too much meaningless government work instead of real long-term recovery.',
+          'The New Deal did not spend enough on pensions.'
+        ],
+        correct: 1
+      },
+      {
+        id: 10,
+        name: 'Evelyn Carter',
+        role: 'Hopeful New Deal Supporter',
+        title: 'Hope Counts in a Crisis Too',
+        kicker: 'Editorial in Defense of Action',
+        position: 48,
+        quote: `No one should pretend the New Deal solved every problem. It did not. Families still struggled, businesses still failed, and the pain of the Depression did not disappear overnight. But for the first time in a long time, many Americans felt that their government was not standing still while the nation suffered. Jobs, relief, reform, and leadership did more than change policy; they restored hope. In a crisis this deep, hope is not a small thing. It is often the first sign that a broken country may begin to recover.`,
+        summaries: [
+          'The New Deal mattered because even when it did not solve everything, it gave people hope and a sense that government was trying to help.',
+          'The New Deal was useless and should have ended at once.',
+          'The New Deal mostly hurt business and did nothing else.'
+        ],
+        correct: 0
+      }
+    ];
+
+    const pagesEl = document.getElementById('pages');
+    const navEl = document.getElementById('nav');
+    const resultsWrap = document.getElementById('resultsWrap');
+    const spectrum = document.getElementById('spectrum');
+    const resultsGrid = document.getElementById('resultsGrid');
+
+    function labelForValue(v) {
+      if (v <= 33) return 'Did Too Little';
+      if (v <= 66) return 'Mixed / In Between';
+      return 'Did Too Much';
+    }
+
+    const state = critics.reduce((acc, critic) => {
+      acc[critic.id] = { slider: 50, answered: false, summaryCorrect: false };
+      return acc;
+    }, {});
+
+    function renderNav() {
+      navEl.innerHTML = critics.map((c, i) => `
+        <button class="nav-btn ${i === 0 ? 'active' : ''}" data-go="${c.id}">
+          ${c.id}. ${c.name}
+        </button>
+      `).join('');
+      navEl.querySelectorAll('.nav-btn').forEach(btn => {
+        btn.addEventListener('click', () => goToPage(Number(btn.dataset.go)));
+      });
+    }
+
+    const getPlaceholderSVG = (id) => `data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='400' height='400'><rect width='400' height='400' fill='%23f0e4d4' /><text x='50%' y='45%' dominant-baseline='middle' text-anchor='middle' font-family='Georgia, serif' font-size='18' font-weight='bold' fill='%2365584c'>critic-${id}.png</text><text x='50%' y='55%' dominant-baseline='middle' text-anchor='middle' font-family='Georgia, serif' font-size='14' fill='%2365584c'>Missing in /images/ folder</text></svg>`;
+
+    function renderPages() {
+      pagesEl.innerHTML = critics.map((c, index) => `
+        <section class="page ${index === 0 ? 'active' : ''}" id="page-${c.id}">
+          <div class="editorial-header">
+            <div class="image-box">
+              <img 
+                src="images/critic-${c.id}.png" 
+                alt="Portrait of ${c.name}" 
+                onerror="this.onerror=null; this.src=\\"${getPlaceholderSVG(c.id)}\\";" 
+              />
+            </div>
+            <div>
+              <div class="editorial-kicker">${c.kicker}</div>
+              <h2 class="editorial-title">${c.title}</h2>
+              <div class="editorial-meta"><strong>${c.name}</strong> • ${c.role} • New Deal Debate Page ${c.id} of ${critics.length}</div>
+              <div class="quote-box">“${c.quote}”</div>
+            </div>
+          </div>
+
+          <div class="section-title">Plot this critic on the spectrum</div>
+          <div class="plot-box">
+            <div class="scale-labels">
+              <span>New Deal Did Too Little</span>
+              <span>New Deal Did Too Much</span>
+            </div>
+            <div class="slider-row">
+              <input type="range" min="0" max="100" value="50" data-slider="${c.id}" />
+              <div class="slider-value" id="slider-label-${c.id}">Mixed / In Between</div>
+            </div>
+          </div>
+
+          <div class="section-title">Choose the best summary</div>
+          <div class="choices-box">
+            ${c.summaries.map((s, idx) => `
+              <label class="choice" data-choice="${c.id}" data-index="${idx}">
+                <input type="radio" name="summary-${c.id}" style="margin-right:8px;" />${s}
+              </label>
+            `).join('')}
+            <button class="btn secondary" data-check="${c.id}">Check Summary</button>
+            <div class="feedback" id="feedback-${c.id}"></div>
+          </div>
+
+          <div class="controls">
+            <button class="btn secondary" ${index === 0 ? 'disabled' : ''} data-prev="${c.id}">Previous Page</button>
+            <button class="btn" ${index === critics.length - 1 ? 'data-finish="true"' : ''} data-next="${c.id}">${index === critics.length - 1 ? 'Finish & View Results' : 'Next Page'}</button>
+          </div>
+        </section>
+      `).join('');
+
+      document.querySelectorAll('[data-slider]').forEach(slider => {
+        slider.addEventListener('input', (e) => {
+          const id = Number(e.target.dataset.slider);
+          const value = Number(e.target.value);
+          state[id].slider = value;
+          document.getElementById(`slider-label-${id}`).textContent = labelForValue(value);
+        });
+      });
+
+      document.querySelectorAll('[data-check]').forEach(btn => {
+        btn.addEventListener('click', () => checkSummary(Number(btn.dataset.check)));
+      });
+
+      document.querySelectorAll('[data-prev]').forEach(btn => {
+        btn.addEventListener('click', () => goToPage(Number(btn.dataset.prev) - 1));
+      });
+
+      document.querySelectorAll('[data-next]').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const id = Number(btn.dataset.next);
+          if (btn.dataset.finish) {
+            showResults();
+          } else {
+            goToPage(id + 1);
+          }
+        });
+      });
+    }
+
+    function goToPage(id) {
+      resultsWrap.classList.remove('active');
+      document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+      const targetPage = document.getElementById(`page-${id}`);
+      if (targetPage) targetPage.classList.add('active');
+      
+      document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('active'));
+      const activeBtn = document.querySelector(`.nav-btn[data-go="${id}"]`);
+      if (activeBtn) activeBtn.classList.add('active');
+    }
+
+    function checkSummary(id) {
+      const critic = critics.find(c => c.id === id);
+      const selected = document.querySelector(`input[name="summary-${id}"]:checked`);
+      const feedback = document.getElementById(`feedback-${id}`);
+      const labels = document.querySelectorAll(`[data-choice="${id}"]`);
+
+      labels.forEach(l => l.classList.remove('correct', 'incorrect'));
+
+      if (!selected) {
+        feedback.textContent = 'Choose one summary first.';
+        feedback.style.color = '#8f2323';
+        return;
+      }
+
+      const chosenIndex = Number(selected.parentElement.dataset.index);
+      state[id].answered = true;
+      state[id].summaryCorrect = chosenIndex === critic.correct;
+
+      labels.forEach(label => {
+        const idx = Number(label.dataset.index);
+        if (idx === critic.correct) label.classList.add('correct');
+        if (idx === chosenIndex && idx !== critic.correct) label.classList.add('incorrect');
+      });
+
+      if (chosenIndex === critic.correct) {
+        feedback.textContent = 'Correct — that summary best matches the critic’s point of view.';
+        feedback.style.color = 'var(--good)';
+      } else {
+        feedback.textContent = 'Not quite — reread the editorial and compare what the critic wanted changed.';
+        feedback.style.color = '#8f2323';
+      }
+      updateProgress();
+    }
+
+    function updateProgress() {
+      const done = Object.values(state).filter(s => s.answered).length;
+      const pct = (done / critics.length) * 100;
+      document.getElementById('progressText').textContent = `${done} / ${critics.length}`;
+      document.getElementById('progressFill').style.width = `${pct}%`;
+    }
+
+    function showResults() {
+      document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+      document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('active'));
+      resultsWrap.classList.add('active');
+      renderResults();
+      // Scroll to top of results
+      document.querySelector('.sidebar').scrollTop = 0;
+      window.scrollTo(0, 0);
+    }
+
+    function renderResults() {
+      spectrum.innerHTML = '';
+      critics.forEach(c => {
+        const marker = document.createElement('div');
+        marker.className = 'marker';
+        marker.style.left = `${state[c.id].slider}%`;
+        marker.textContent = c.name.split(' ')[0];
+        spectrum.appendChild(marker);
+      });
+
+      resultsGrid.innerHTML = critics.map(c => `
+        <div class="result-card">
+          <div class="tag" style="background: ${
+            state[c.id].slider <= 33 ? '#e9f6ee' : 
+            state[c.id].slider > 66 ? '#faeaea' : '#efe3d3'
+          }; border-color: ${
+            state[c.id].slider <= 33 ? 'var(--good)' : 
+            state[c.id].slider > 66 ? '#8f2323' : 'var(--line)'
+          }">
+            Your Plot: ${labelForValue(state[c.id].slider)}
+          </div>
+          <h3>${c.name}</h3>
+          <div><strong>Actual Lean:</strong> ${labelForValue(c.position)}</div>
+          <div><strong>Role:</strong> ${c.role}</div>
+          <p style="margin:.8rem 0 0; line-height:1.5; font-size: 0.9rem;">${c.title}</p>
+        </div>
+      `).join('');
+    }
+
+    // Initialize the application
+    renderNav();
+    renderPages();
+    updateProgress();
+  </script>
+</body>
+</html>
