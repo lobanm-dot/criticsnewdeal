@@ -143,29 +143,28 @@
     .page.active { display: block; }
 
     .editorial-header {
-      display: grid;
-      grid-template-columns: 220px 1fr;
-      gap: 18px;
       border-bottom: 2px solid var(--ink);
       padding-bottom: 16px;
-      margin-bottom: 16px;
+      margin-bottom: 18px;
     }
 
-    .image-box {
-      background: var(--card);
+    .banner-box {
+      width: 100%;
+      height: 280px;
+      background: #e6dfd1;
       border: 2px solid var(--ink);
-      min-height: 250px;
+      margin-bottom: 18px;
+      overflow: hidden;
       display: flex;
       justify-content: center;
       align-items: center;
-      padding: 4px;
     }
 
-    .image-box img {
+    .banner-box img {
       width: 100%;
       height: 100%;
-      max-height: 250px;
       object-fit: cover;
+      object-position: center 20%;
       display: block;
     }
 
@@ -408,7 +407,6 @@
     @media (max-width: 920px) {
       .layout { grid-template-columns: 1fr; }
       .sidebar { position: static; max-height: none; }
-      .editorial-header { grid-template-columns: 1fr; }
       .slider-row { grid-template-columns: 1fr; }
       .slider-value { width: 100%; }
     }
@@ -639,26 +637,23 @@
       });
     }
 
-    const getPlaceholderSVG = (id) => `data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='400' height='400'><rect width='400' height='400' fill='%23f0e4d4' /><text x='50%' y='45%' dominant-baseline='middle' text-anchor='middle' font-family='Georgia, serif' font-size='18' font-weight='bold' fill='%2365584c'>critic-${id}.png</text><text x='50%' y='55%' dominant-baseline='middle' text-anchor='middle' font-family='Georgia, serif' font-size='14' fill='%2365584c'>Missing in /images/ folder</text></svg>`;
-
     function renderPages() {
       pagesEl.innerHTML = critics.map((c, index) => `
         <section class="page ${index === 0 ? 'active' : ''}" id="page-${c.id}">
           <div class="editorial-header">
-            <div class="image-box">
-              <img 
-                src="images/critic-${c.id}.png" 
-                alt="Portrait of ${c.name}" 
-                onerror="this.onerror=null; this.src=\\"${getPlaceholderSVG(c.id)}\\";" 
-              />
-            </div>
-            <div>
-              <div class="editorial-kicker">${c.kicker}</div>
-              <h2 class="editorial-title">${c.title}</h2>
-              <div class="editorial-meta"><strong>${c.name}</strong> • ${c.role} • New Deal Debate Page ${c.id} of ${critics.length}</div>
-              <div class="quote-box">“${c.quote}”</div>
-            </div>
+            <div class="editorial-kicker">${c.kicker}</div>
+            <h2 class="editorial-title">${c.title}</h2>
+            <div class="editorial-meta"><strong>${c.name}</strong> • ${c.role} • New Deal Debate Page ${c.id} of ${critics.length}</div>
           </div>
+          
+          <div class="banner-box">
+            <img 
+              src="images/critic-${c.id}.png" 
+              alt="Portrait of ${c.name}" 
+            />
+          </div>
+          
+          <div class="quote-box">“${c.quote}”</div>
 
           <div class="section-title">Plot this critic on the spectrum</div>
           <div class="plot-box">
